@@ -18,7 +18,7 @@ treeMethods.addChild = function(value) {
 
 // take any value => check a target node and all descendents if contains value
 treeMethods.contains = function(target) {
-	debugger;
+	// debugger;
 	var hasTarget = false;
 
 	// trarget in current node
@@ -26,14 +26,16 @@ treeMethods.contains = function(target) {
 		return hasTarget || true;
 	}
 	// target not in current node
-	if (this.children.length > 0) { // target has 0 children
+	if (this.children.length > 0) { // target has children
 		// debugger;
-		return hasTarget || false;
-	} else {
 		for (var child = 0; child < this.children.length; child++) {
 			// debugger;
-			return hasTarget || this.children[child].contains(target);
+			hasTarget = hasTarget || this.children[child].contains(target);
 		}
+		return hasTarget;
+		
+	} else {
+		return hasTarget || false;
 	}
 };
 
@@ -41,4 +43,6 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ _.addChild = O(k)
+ _.contains = O(n)
  */
