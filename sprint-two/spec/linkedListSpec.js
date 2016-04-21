@@ -52,4 +52,10 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+    it('should contain a value that was removed, if that value is also found in linked list', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(4);
+    linkedList.removeHead();
+    expect(linkedList.contains(4)).to.equal(true);
+  });
 });
