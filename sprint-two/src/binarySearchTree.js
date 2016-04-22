@@ -9,30 +9,48 @@ BinarySearchTree.prototype.insert = function (value) {
 	var sideToAdd;
 
 	if (value < this.value) {
-		sideToAdd = this.left;
+		sideToAdd = 'left';
 	} else {
-		sideToAdd = this.right;
+		sideToAdd = 'right';
 	}
 
 	if (this.child > 1) { // over or equal child per node limit
 		// recurse
-		sideToAdd.insert(value);
+		this[sideToAdd].insert(value);
 	} else {
 		// add if not already exists
-		if (sideToAdd === undefined) {
-			sideToAdd = new BinarySearchTree(value);
+		if (this[sideToAdd] === undefined) {
+			this[sideToAdd] = new BinarySearchTree(value);
+			this.child++;
 		} else { // if exists
-			sideToAdd.insert(value);
+			this[sideToAdd].insert(value);
 		}
 	}
 }
 
 BinarySearchTree.prototype.contains = function (value) {
-	
+	var sideToLook;
+
+	if (value < this.value) {
+		sideToLook = 'left';
+	} else {
+		sideToLook = 'right';
+	}
+
+	if (this.value === value) {
+		return true
+	} else if (this[sideToLook] === undefined) {
+		return false;
+	} else {
+		return this[sideToLook].contains(value);
+	}
+
 }
 
 BinarySearchTree.prototype.depthFirstLog = function (callback) {
+	callback(this.value);
 
+	
 }
 /*
  * Complexity: What is the time complexity of the above functions?
