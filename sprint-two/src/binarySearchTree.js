@@ -50,7 +50,13 @@ BinarySearchTree.prototype.contains = function (value) {
 BinarySearchTree.prototype.depthFirstLog = function (callback) {
 	callback(this.value);
 
-	
+	var sideToCall = ['left', 'right'];
+	debugger;
+	for (var side = 0; side < sideToCall.length; side++) {
+		if (this[sideToCall[side]] !== undefined) {
+			this[sideToCall[side]].depthFirstLog(callback);
+		}
+	}
 }
 /*
  * Complexity: What is the time complexity of the above functions?
