@@ -56,6 +56,7 @@ var Node = function(value) { // each node class only points to its tail
 
   node.value = value;
   node.next = null; // only created / assigned when call addToTail
+  node.previous = null;
 
   return node;
 };
