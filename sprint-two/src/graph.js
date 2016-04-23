@@ -78,7 +78,7 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 	if (foundToNode || foundFromNode) {
 		console.log("Node not found!")
-		debugger;
+		// debugger;
 	}
 };
 
