@@ -41,4 +41,52 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  // test adding new parent property
+  it('should correctly refer to right parents', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[0].addChild(10);
+    tree.children[1].addChild(8);
+    expect(tree.children[0].children[0].value).to.equal(7);
+    expect(tree.children[0].children[0].parent[0].value).to.equal(5);
+    expect(tree.children[0].children[1].value).to.equal(10);
+    expect(tree.children[0].children[1].parent[0].value).to.equal(5);
+  });
+
+  // test removeFromParent
+  it('should return removed tree', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[0].children[0].addChild(9);
+    tree.children[0].addChild(10);
+    tree.children[1].addChild(8);
+    tree.removeFromParent(tree.children[0].children[0]);
+    expect(tree.children[0].children[0].value).to.equal(10);
+  });
+
+  // it('should not retain link to children', function() {
+  //   tree.addChild(5);
+  //   tree.addChild(6);
+  //   tree.children[0].addChild(7);
+  //   tree.children[0].addChild(10);
+  //   tree.children[1].addChild(8);
+  //   expect(tree.children[0].children[0].value).to.equal(7);
+  //   expect(tree.children[0].children[0].parent[0].value).to.equal(5);
+  //   expect(tree.children[0].children[1].value).to.equal(10);
+  //   expect(tree.children[0].children[1].parent[0].value).to.equal(5);
+  // });
+
+  // it('should not retain link to parent', function() {
+  //   tree.addChild(5);
+  //   tree.addChild(6);
+  //   tree.children[0].addChild(7);
+  //   tree.children[0].addChild(10);
+  //   tree.children[1].addChild(8);
+  //   expect(tree.children[0].children[0].value).to.equal(7);
+  //   expect(tree.children[0].children[0].parent[0].value).to.equal(5);
+  //   expect(tree.children[0].children[1].value).to.equal(10);
+  //   expect(tree.children[0].children[1].parent[0].value).to.equal(5);
+  // });
 });
